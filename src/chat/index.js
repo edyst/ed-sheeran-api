@@ -1,10 +1,16 @@
+// import { disconnect } from 'cluster';
+
 const socketIO = require('socket.io')
 const io = new socketIO()
 
+var users = []
 io.on('connection', socket => {
-  console.log('connected!')
-  socket.on('login', data => {
-    console.log('message login with data: ', data)
+  socket.on('user_connected', data => {
+    var obj = data
+    console.log('connected ' + data)
+  })
+  socket.on('disconnect', user => {
+    console.log(user)
   })
 })
 
